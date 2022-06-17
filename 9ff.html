@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+
+
+
+<script>
+
+//hjelpemidler
+let application = document.getElementById('app')
+
+//modell
+
+let txt = '';
+let mFina;
+let mGrossa;
+let cheese;
+let noCheese;
+let extraCheese;
+let quatroQueijos;
+let presunto;
+let calabresa;
+let frango;
+let sim;
+let nao;
+
+
+//vieww
+    updateView()
+    function updateView() {
+        application.innerHTML = `
+    <h1>Order your PIZZA</h1>
+    <br>
+    <br>
+    <div id = 'resultado'>${txt}</div>
+    <br>
+    Bread : <input type="radio"  id="mfina" name="bread"  onchange="order()"> Massa fina
+          <input type="radio"   id="massa" name="bread" onchange="order()"> Massa grossa
+    <br>
+    Cheese : <input type="radio"   id="cheese" name="cheese" onchange="order()"> Normal cheese
+           <input type="radio"   id="nocheese" name="cheese" onchange="order()"> No cheese 
+           <input type="radio"   id="extracheese" name="cheese" onchange="order()"> Extra cheese  
+    <br>
+    Toppings :  <input type="radio"   id="4queijos" name="toppings" onchange="order()"> 4 queijos
+             <input type="radio"   id="presunto" name="toppings" onchange="order()"> Presunto
+             <input type="radio"   id="calabresa" name="toppings" onchange="order()"> Calabresa
+             <input type="radio"   id="frango" name="toppings" onchange="order()"> Frango com catupiry
+    <br>
+    Delivery : <input type="radio"  id="sim" name="delivery" onchange="order()"> Sim
+             <input type="radio"  id="nao" name="delivery" onchange="order()"> Nao 
+             <button >order</button>        
+
+    
+    `
+
+    }
+    function updateResult() {
+document.getElementById('resultado').innerHTML = `${txt}`
+}
+
+  
+
+
+
+//controller
+
+function getTheId(){
+     mFina = document.getElementById('mfina')
+    mGrossa = document.getElementById('massa')
+    cheese = document.getElementById('cheese')
+    noCheese = document.getElementById('nocheese')
+    extraCheese = document.getElementById('extracheese')
+    quatroQueijos = document.getElementById('4queijos')
+    presunto = document.getElementById('presunto')
+    calabresa = document.getElementById('calabresa')
+    frango = document.getElementById('frango')
+    sim = document.getElementById('sim')
+    nao = document.getElementById('nao')
+}
+
+function order() {
+    updateResult()
+    
+    getTheId()
+    if((mFina.checked || mGrossa.checked) &&
+    (cheese.checked || noCheese.checked || extraCheese.checked) &&
+    (quatroQueijos.checked || presunto.checked || calabresa.checked || frango.checked) && 
+    (sim.checked || nao.checked)) { txt = 'You are ready to order';updateResult()}
+
+    else{
+        txt = "You havent choosen: ";
+        if (!mFina.checked && !mGrossa.checked){
+            txt += 'massa, ';updateResult()
+           
+        }
+        if(!cheese.checked && !noCheese.checked && !extraCheese.checked){
+            txt += 'cheese, ';updateResult()
+           
+        }
+        if(!quatroQueijos.checked && !presunto.checked && !calabresa.checked && !frango.checked){
+            txt += 'toppings, ';updateResult()
+           
+        }
+        if(!sim.checked && !nao.checked) {
+            txt+= 'delivery, ';updateResult()
+        }
+    }
+   
+   
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
